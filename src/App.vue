@@ -87,7 +87,7 @@ export default {
         else if (now.startsWith(";")) continue;
         else if (now.startsWith("mov")) continue;
         else if (now.startsWith("bg")) {
-          this.bg = "\\\\" + /[0-9a-z_\\]+\.[a-z]+/.exec(now).toString().replace('\\','\\\\')+'.webp';
+          this.bg = "https://cdn.jsdelivr.net/gh/wcwac/narcissu@master/public/" + /[0-9a-z_\\]+\.[a-z]+/.exec(now).toString().replace('\\','\\\\')+'.webp';
           console.log(this.bg)
           setTimeout(() => this.cal(), 1100);
           return;
@@ -107,7 +107,7 @@ export default {
         } else if (now.startsWith("mp3loop")) {
           this.sound["mp3"] = new Howl({
             loop: true,
-            src: [/"(.*?)"/.exec(now)[1]],
+            src: ["https://cdn.jsdelivr.net/gh/wcwac/narcissu@master/public/"+/"(.*?)"/.exec(now)[1]],
           });
           this.sound["mp3"].play();
         } else if (now.startsWith("mp3fadeout")) {
