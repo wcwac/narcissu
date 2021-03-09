@@ -6,8 +6,7 @@
   >
     <!-- <div > -->
     <div>
-      <button @click="play()">sound is: {{ count }}</button>
-      <button @click="bgm.play()">bgm is: {{ count }}</button>
+      <p>{{ count }}</p>
       <text-box :text="text" />
     </div>
   </div>
@@ -57,11 +56,9 @@ export default {
       }
       return false;
     })("app");
-    let rawtext = (this.textlist = await fetch("./src/assets/1.txt").then(
-      (res) => {
-        return res.text();
-      }
-    ));
+    let rawtext = (this.textlist = await fetch("/script/1.txt").then((res) => {
+      return res.text();
+    }));
     console.log(rawtext);
     this.textlist = rawtext.split("\n");
     this.sound = new Map();
@@ -100,10 +97,15 @@ export default {
             this.cal();
           }, parseInt(/[0-9]+/.exec(now).toString()));
           return;
-        } else if (now.startsWith("!")||now.startsWith("setwindow")||now.startsWith("erasetextwindow")){
+        } else if (
+          now.startsWith("!") ||
+          now.startsWith("setwindow") ||
+          now.startsWith("erasetextwindow")
+        ) {
           continue;
-        }else if (now.startsWith("mp3loop")) {
+        } else if (now.startsWith("mp3loop")) {
           this.sound["mp3"] = new Howl({
+            loop: true,
             src: [/"(.*?)"/.exec(now)[1]],
           });
           this.sound["mp3"].play();
@@ -146,45 +148,9 @@ export default {
         }
       }
     },
-    play() {
-      this.sound[5] = new Howl({
-        src: ["/w/n001.ogg"],
-      });
-      this.sound[5].play();
-    },
   },
 };
 </script>
-
-<script setup lang="ts">
-import { defineProps } from "vue";
-import { reactive } from "vue";
-defineProps({
-  msg: String,
-});
-const bgm = new Howl({
-  src: ["./src/assets/se0629.ogg"],
-});
-const sound = new Howl({
-  src: ["./src/assets/new_465.ogg"],
-});
-
-// !function setScale() {
-//   window.addEventListener(
-//     "resize",
-//     function () {
-//       var domW = 1280,
-//         domH = 720;
-//       var scale = Math.min(window.innerWidth / domW, window.innerHeight / domH);
-//       dom.style.transform = "scale(" + scale + ")";
-//       state.scale = scale;
-//     },
-//     false
-//   );
-// };
-</script>
-
-
 
 <style scoped>
 .main-div {
@@ -193,7 +159,6 @@ const sound = new Howl({
   height: 600px;
   backface-visibility: hidden;
   transform-origin: left top;
-  transform: translateZ(0px);
   cursor: inherit;
   transition: all 1s ease-in-out;
 }

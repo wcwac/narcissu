@@ -36,7 +36,7 @@ export default {
   left: 180px;
   top: 358px;
   height: 200px;
-  width: 600px;
+  width: 580px;
   /* border: none; */
 }
 
