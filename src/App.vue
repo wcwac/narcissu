@@ -100,7 +100,9 @@ export default {
             this.cal();
           }, parseInt(/[0-9]+/.exec(now).toString()));
           return;
-        } else if (now.startsWith("mp3loop")) {
+        } else if (now.startsWith("!")||now.startsWith("setwindow")||now.startsWith("erasetextwindow")){
+          continue;
+        }else if (now.startsWith("mp3loop")) {
           this.sound["mp3"] = new Howl({
             src: [/"(.*?)"/.exec(now)[1]],
           });
@@ -108,9 +110,9 @@ export default {
         } else if (now.startsWith("mp3fadeout")) {
           if (this.sound["mp3"]) this.sound["mp3"].stop();
         } else if (now.startsWith("stop")) {
-          // for (var i in this.sound) {
-          //   i.stop();
-          // }
+          for (var i in this.sound) {
+            i.stop();
+          }
           console.log("stop music");
         } else if (now.startsWith("dwavestop")) {
           if (this.sound && this.sound[/[0-9]+/.exec(now).toString()])
