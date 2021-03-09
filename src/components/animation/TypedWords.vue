@@ -13,10 +13,6 @@ export default {
       type: String,
       default: "",
     },
-    keep: {
-      type: Boolean,
-      default: false,
-    },
     typeSpeed: {
       type: Number,
       default: 20,
@@ -31,17 +27,24 @@ export default {
   },
   methods: {
     initTypedJs() {
-      if (this.keep) {
-        this.keeptext += this.lasttext;
-      } else {
+      if (this.words[0] == "\\") {
         this.keeptext = "";
+        let tmp = this.words.substr(1, this.words.length);
+        this.typedObj = new Typed(".typed-words", {
+          strings: [tmp],
+          typeSpeed: this.typeSpeed,
+          cursorChar: "▼",
+        });
+        this.lasttext = tmp;
+      } else {
+        this.keeptext += this.lasttext;
+        this.typedObj = new Typed(".typed-words", {
+          strings: [this.words],
+          typeSpeed: this.typeSpeed,
+          cursorChar: "▼",
+        });
+        this.lasttext = this.words;
       }
-      this.typedObj = new Typed(".typed-words", {
-        strings: [this.words],
-        typeSpeed: this.typeSpeed,
-        cursorChar: "▼",
-      });
-      this.lasttext = this.words;
     },
   },
   watch: {
@@ -50,12 +53,6 @@ export default {
         this.typedObj.destroy();
       }
       this.initTypedJs();
-    },
-    clear() {
-      if (this.clear) {
-        this.keeptext = "";
-        this.clear = false;
-      }
     },
   },
 };

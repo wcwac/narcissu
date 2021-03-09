@@ -2,20 +2,20 @@
   <div
     class="main-div"
     :style="{ backgroundImage: 'url(\'' + encodeURI(bg) + '.webp\')' }"
+    @click="cal()"
   >
     <!-- <div > -->
     <div>
-      <button @click="cal()">sound is: {{ count }}</button>
+      <button @click="play()">sound is: {{ count }}</button>
       <button @click="bgm.play()">bgm is: {{ count }}</button>
-      <text-box :text="text" :keep="keep" />
-      <!-- <p class="typing">■　８年后…２００４年　主人公　初夏　■</p>
-        <p class="typing">简易中文打字效果，作者：张鑫旭</p> -->
+      <text-box :text="text" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import TextBox from "./components/textbox/TextBox.vue";
+import { Howl, Howler } from "howler";
 
 export default {
   name: "home",
@@ -29,10 +29,34 @@ export default {
       count: 0,
       bg: "/e/b.jpg",
       waiting: 0,
-      keep:false
+      last: false,
+      sound: {},
     };
   },
   async mounted() {
+    !(function resizeScale(id) {
+      window.addEventListener(
+        "resize",
+        function () {
+          setScale();
+        },
+        false
+      );
+      setScale();
+      function setScale() {
+        const view = document.getElementById(id);
+        view.style.position = "absolute";
+        // dom.view.style.width = contentW + "px";
+        // dom.view.style.height = contentH + "px";
+        view.style.backfaceVisibility = "hidden";
+        view.style.transformOrigin = "left top";
+        var ratio = Math.min(window.innerWidth / 800, window.innerHeight / 600);
+        view.style.transform = `scale(${ratio})`;
+        view.style.left = `${(window.innerWidth - 800 * ratio) / 2}px`;
+        view.style.top = `${(window.innerHeight - 600 * ratio) / 2}px`;
+      }
+      return false;
+    })("app");
     let rawtext = (this.textlist = await fetch("./src/assets/1.txt").then(
       (res) => {
         return res.text();
@@ -40,47 +64,91 @@ export default {
     ));
     console.log(rawtext);
     this.textlist = rawtext.split("\n");
-    this.nextParagraph();
+    this.sound = new Map();
+    this.cal();
   },
   methods: {
+    clearTimer() {
+      let i = setTimeout(() => this.cal(), 100000);
+      while (i >= 0) {
+        clearTimeout(i);
+        --i;
+      }
+    },
     flash(str) {
       this.text = str;
     },
     cal() {
       if (this.waiting == 1) return;
+      this.clearTimer();
       let flag = 0;
       while (flag == 0) {
         ++this.count;
-        const now = this.textlist[this.count] as string;
+        let now = this.textlist[this.count] as string;
         console.log(now);
         if (now == "") continue;
         else if (now.startsWith(";")) continue;
         else if (now.startsWith("mov")) continue;
         else if (now.startsWith("bg")) {
           this.bg = "\\" + /[0-9a-z_\\]+\.[a-z]+/.exec(now);
-          setTimeout(() => this.cal(), 1000);
+          setTimeout(() => this.cal(), 1100);
           return;
-        } else if (now.startsWith("wait")) {
+        } else if (now.startsWith("wait") || now.startsWith("!w")) {
           this.waiting = 1;
           setTimeout(() => {
             this.waiting = 0;
             this.cal();
           }, parseInt(/[0-9]+/.exec(now).toString()));
           return;
+        } else if (now.startsWith("mp3loop")) {
+          this.sound["mp3"] = new Howl({
+            src: [/"(.*?)"/.exec(now)[1]],
+          });
+          this.sound["mp3"].play();
+        } else if (now.startsWith("mp3fadeout")) {
+          if (this.sound["mp3"]) this.sound["mp3"].stop();
+        } else if (now.startsWith("stop")) {
+          // for (var i in this.sound) {
+          //   i.stop();
+          // }
+          console.log("stop music");
+        } else if (now.startsWith("dwavestop")) {
+          if (this.sound && this.sound[/[0-9]+/.exec(now).toString()])
+            this.sound[/[0-9]+/.exec(now).toString()].stop();
+        } else if (now.startsWith("dwave")) {
+          let ch = /([0-9]+),"(.*?)"/.exec(now)[1];
+          let fi = /([0-9]+),"(.*?)"/.exec(now)[2];
+          this.sound[ch] = new Howl({
+            src: ["\\" + fi],
+          });
+          this.sound[ch].play();
         } else if (now.startsWith("stop")) continue;
-        else if (now.startsWith("dwave")) continue;
-        else if (now.startsWith("dwavestop")) bgm.stop();
-        else if (now.startsWith("stop")) continue;
-        if (now.endsWith('\\')||now.endsWith('@')){
-          this.flash(now.substring(0,now.length-1));
-          this.keep=true;
-        }else{
-          this.flash(now);
-          this.keep=false;
+        else {
+          if (this.last) {
+            now = "\\" + now;
+          }
+          now = now.replace("@", "\n");
+          if (now.endsWith("\\")) {
+            this.flash(now.substring(0, now.length - 1));
+            this.last = true;
+          }
+          // else if (now.endsWith('@')){
+          //   this.flash(now.substring(0,now.length-1)+"\n");
+          //   this.last=false;
+          // }
+          else {
+            this.flash(now);
+            this.last = false;
+          }
+          flag = 1;
         }
-        flag = 1;
       }
-
+    },
+    play() {
+      this.sound[5] = new Howl({
+        src: ["/w/n001.ogg"],
+      });
+      this.sound[5].play();
     },
   },
 };
@@ -89,7 +157,6 @@ export default {
 <script setup lang="ts">
 import { defineProps } from "vue";
 import { reactive } from "vue";
-import { Howl, Howler } from "howler";
 defineProps({
   msg: String,
 });
@@ -113,30 +180,6 @@ const sound = new Howl({
 //     false
 //   );
 // };
-
-!(function resizeScale(id) {
-  window.addEventListener(
-    "resize",
-    function () {
-      setScale();
-    },
-    false
-  );
-  setScale();
-  function setScale() {
-    const view = document.getElementById(id);
-    view.style.position = "absolute";
-    // dom.view.style.width = contentW + "px";
-    // dom.view.style.height = contentH + "px";
-    view.style.backfaceVisibility = "hidden";
-    view.style.transformOrigin = "left top";
-    var ratio = Math.min(window.innerWidth / 800, window.innerHeight / 600);
-    view.style.transform = `scale(${ratio})`;
-    view.style.left = `${(window.innerWidth - 800 * ratio) / 2}px`;
-    view.style.top = `${(window.innerHeight - 600 * ratio) / 2}px`;
-  }
-  return false;
-})("app");
 </script>
 
 

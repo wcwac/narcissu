@@ -1,26 +1,12 @@
-*haeleth_image
-mov $sys_midasi,"^Prologue [h]"
-
-wait 700
-
-wait 700
-
-;goto *tc1
+mov $sys_midasi,"序章"
 
 
-;bg "tui\title_off2.bmp",1
-
-dwavestop 5
-
-;プロローグ
-
-bg "e\b.jpg",3
+bg "e\b.jpg",5
 stop
 mp3fadeout 1500
 
-dwavestop 0
 
-dwave 0,"w\n001.ogg"
+dwavestop 0
 
 bg "e\c001a.jpg",1
 
@@ -36,33 +22,31 @@ wait 700
 
 bg "e\c004.jpg",5
 
-wait 1000
+wait 800
 
-bg "e\b.jpg",5
 
-wait 200
+dwavestop 1
 
-dwave 5,"se\rain_1.ogg"
+
+
+dwave 1,"se\rain_1.wav"
 
 bg "e\sora_ame03.jpg",3
 
-bg "e\c02.jpg",3
+bg "e\c02.bmp",3
 
-;setwindow 180,358,35,17,17,17,0,3,1,1,5,#ffffff,0,0,799,599
-h_usewindow "main"
+setwindow 180,358,35,17,17,17,0,3,1,1,5,#ffffff,0,0,799,599
 !sd
 erasetextwindow 0
 
 　■　１９９６年　春　濑津美　■\
 
-;bg "e\c02b.jpg",3
 
 mp3loop "bgm\n04.mp3"
 
 bg "e\sora_ame01.jpg",3
 
 
-dwave 0,"w\n002.ogg"
 
 『…从小时候起，我的身体就很虚弱…』\
 
@@ -72,7 +56,6 @@ dwavestop 0
 但是，我也拥有和其他孩子一样的小学时代，
 那时到了暑假，我也会在外边一直玩耍到皮肤被晒黑。\
 
-;○とも＞教室夕方
 
 bg "e\byoin_heya_yu2.jpg",5
 
@@ -84,9 +67,8 @@ bg "e\byoin_heya_yu2.jpg",5
 那是第一学期期中考试之前，
 梅雨降临不久后的一个寒冷刺骨的日子。\
 
-;○とも＞夕：空
 
-dwave 5,"se\rain_1.ogg"
+dwave 1,"se\rain_1.wav"
 
 bg "e\sora_ame03.jpg",5
 
@@ -102,9 +84,9 @@ bg "e\sora_ame03.jpg",5
 
 …但是，这一切都只发生在最初的日子里而已。\
 
-dwavestop 5
 
-;bg "e\byoin_heya_yu2.jpg",5
+dwavestop 1
+
 
 bg "e\sora_ame01.jpg",3
 
@@ -123,53 +105,51 @@ bg "e\sora_ame01.jpg",3
 
 bg "e\chara_k01.jpg",5
 
-dwave 0,"w\n003.ogg"
 
-「…看来，她们似乎『不喜欢』我…」\
+「…看来，她们似乎『不喜欢』我」\
 
 dwavestop 0
 
 wait 300
 
-dwave 0,"w\n004.ogg"
 
-「对普通人来说，我的存在只是一个累赘…」\
+「对普通人来说，我的存在只是一个累赘」\
 
 dwavestop 0
 
 bg "e\chara_k01.jpg",3
 
-dwave 0,"w\n005.ogg"
+
+!s80
 
 「所以…才会被人们从记忆中抹去…」\
 
 dwavestop 0
 
-dwave 5,"se\rain_1.ogg"
+dwave 1,"se\rain_1.wav"
 
-bg "e\w.jpg",5
+bg "e\w.jpg",3
 
 bg "e\sora_ame03.jpg",5
 
-dwave 0,"w\n006.ogg"
+
+!sd
 
 「在这个只看得到自己的世界里…
 　我送走了不知多少个季节…多少次下着梅雨的苍白天空…」\
 
 dwavestop 0
 
-dwave 0,"w\n007.ogg"
 
 「我的英语教科书，
-　自从１年级的期中考试以后，就再也没被翻开过…」\
+　自从１年级的期中考试以后，就再也没被翻开过」\
 
 dwavestop 0
 
 bg "e\chara_0012.jpg",5
 
-dwave 0,"w\n008.ogg"
 
-「…从那时起…@我的时间就静止了…」\
+「…从那时起…@我的时间就静止了」\
 
 dwavestop 0
 
@@ -179,14 +159,22 @@ bg "e\c005.jpg",5
 
 bg "e\c0052.jpg",3
 
-;mp3fadeout 2000
-;stop
+bg "e\w.jpg",3
 
-;click
+bg "e\kfc01.jpg",5
+
+
+bg "e\kfc01.jpg",5
+
+bg "e\kfc01c.jpg",1
+
+bg "e\kfc01d.jpg",3
+
+bg "e\w.jpg",3
 
 !w800
 
-dwave 5,"se\z42r.ogg"
+dwave 1,"se\z42r.wav"
 
 bg "e\w.jpg",1
 
@@ -198,19 +186,16 @@ bg "e\c00.jpg",5
 
 bg "e\sora01.jpg",3
 
-;mp3loop "tui\sen032.mp3"
 
-;mp3loop "tui2\e01.mp3"
 
 
 夏日炎炎，灼烤着满头的汗水。\
 
 驾照考场的一隅，放置着一块巨大的电子公告板。\
 
-屏幕上的小灯泡依次后了起来。
+屏幕上的小灯泡依次亮了起来。
 我和在场的所有人一样，抬头寻找着自己的考号。\
 
-;○とも＞なにか室内ｏｒ街中系
 
 「２３７，２３７…」\
 
@@ -221,11 +206,10 @@ dwavestop 0
 
 bg "e\b.jpg",3
 
-;○とも＞ＳＥとか
 
-dwave 5,"se\faan1_b.ogg"
+dwave 1,"se\faan1_b.wav"
 
-咣当，咣当，\
+咣当、咣当，\
 
 中午时分，正是其他人忙碌的时候…
 太阳升起和落下时都会拥挤不堪的列车，此时则显得冷冷清清。\
@@ -248,17 +232,16 @@ dwavestop 0
 只是因为周围有很多人都去了驾校，
 而且他们经常劝说我也去考一张驾照。\
 
-;○とも＞夜空
 
 bg "e\sora_yoru01.jpg",5
 
 这一天夜里。\
 
 我将获得驾照的事情告诉了父母。
-『是吗』，@回应是如此地简短。\
+『是吗』@　回应是如此地简短。\
 
-我试着问道，能否借用爸爸的车子,
-『不行』，@我得到的是一句同样简短的答复。\
+我试着问道，能否借用父亲的车子。
+『不行』@　我得到的是一句同样简短的答复。\
 
 其实我并不想开车。
 而他们的答复也和我的预想完全一致。这就是我的父母。\
@@ -280,7 +263,7 @@ bg "e\byoin_rouka.jpg",3
 无所事事地等待了很长很长的时间…\
 
 不知不觉间读完了候诊室中摆放着的３本漫画杂志，
-正当我将手伸向第４本的时候，\
+正当我将手伸向第４本的时候…\
 
 医生出现了…他命令我办理了住院手续。\
 
@@ -295,12 +278,11 @@ stop
 
 bg "e\sora07.jpg",5
 
-;setwindow 180,358,35,17,17,17,0,3,1,1,5,#ffffff,0,0,799,599
-h_usewindow "main"
+setwindow 180,358,35,17,17,17,0,3,1,1,5,#ffffff,0,0,799,599
 !sd
 erasetextwindow 0
 
-dwavestop 5
+dwavestop 1
 
 bg "e\c03.jpg",3
 
@@ -308,7 +290,6 @@ bg "e\c03.jpg",3
 
 mp3loop "tui2\e01.mp3"
 
-;mp3loop "tui\sen032.mp3"
 
 bg "e\sora07.jpg",3
 
@@ -316,7 +297,6 @@ bg "e\sora07.jpg",3
 
 我仍然待在医院之中。\
 
-;bg "e\byoin_rouka.jpg",3
 
 当然了，我也不是一直都住在医院里。
 只是不停地重复着入院与出院的过程。\
@@ -324,9 +304,9 @@ bg "e\sora07.jpg",3
 上个月，我平生第一次尝到了手术的味道。
 出院后，还需要频繁地前往离家５分钟路程的医院，去接受定期检查。\
 
-之后，便是住院，出院，检查，住院的循环…\
+之后，便是住院、出院、检查、住院的循环…\
 
-尽管不知道『派特』啊，『易瑞沙』啊…都是些什么东西，
+尽管不知道『ＰＥＴ』啊、『易瑞沙』啊…都是些什么东西，
 但不知不觉间，这单调的循环已经持续了几个月。\
 
 食欲越来越差，服用药物的量与种类倒是与日俱增。
@@ -384,26 +364,21 @@ bg "e\amazora02.jpg",5
 不出意外的话，
 永远都不会有它的用武之地了。\
 
-;dwave 5,"se\rain01.ogg"
 
-;bg "e\amazora02.jpg",5
 
 bg "e\w.jpg",5
 
 在充满了做作的温馨气氛之中…\
 
-我冷静地，茫然地，漠不关心地思索着。\
+我冷静地、茫然地、漠不关心地思索着。\
 
 bg "e\w.jpg",5
-;bg "e\b.jpg",5
 
-;＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
 bg "e\c032.jpg",5
 
 　■　主人公　２００５年　１月　■\
 
-;bgm
 
 bg "e\byoin_rouka.jpg",5
 
@@ -413,7 +388,7 @@ bg "e\byoin_rouka.jpg",5
 而是被带到了一间布置得像客厅的房间里。\
 
 之后，
-我静静地听着爸爸与医生翻来覆去地对我嚼着舌头。\
+我静静地听着父亲与医生翻来覆去地对我嚼着舌头。\
 
 这就是所谓的病危通知吧。\
 
@@ -431,7 +406,7 @@ dwavestop 0
 医生拿起圆珠笔开始写着什么。\
 
 大概是转入疗养院的手续吧。
-他仅仅是在完成自己的工作而已，爸爸的态度也与他相仿。\
+他仅仅是在完成自己的工作而已，父亲的态度也与他相仿。\
 
 …人的死，原来这么简单啊…\
 
@@ -439,7 +414,6 @@ dwavestop 0
 
 bg "e\b.jpg",5
 
-;;☆シーン変え
 
 之后，从这一天开始，我由４楼转入了７楼，
 由６人病房转入了单人病房。\
@@ -448,14 +422,12 @@ bg "e\byoin7_rouka.jpg",5
 
 看起来，７楼的气氛与其他的楼层明显不同。\
 
-首先，地板被擦得很后。
+首先，地板被擦得很亮。
 房间也变得更加宽敞了。\
 
 病房被打扫得一尘不染，
 日光透过巨大的玻璃窗射进屋内。\
 
-;きっと、ベッドも新品に近いものだろう。
-;真っ白なシーツが眩しい日射しに際立っていた。\
 
 …但是，窗户却只能拉开一道窄窄的缝隙。\
 
@@ -471,34 +443,10 @@ bg "e\byoin7_rouka.jpg",5
 
 bg "e\b.jpg",5
 
-…宽敞的房间，白色的塑料手环，仅能拉开１５厘米的窗户。\
+…宽敞的房间，白色的塑料手环，仅能拉开１５ｃｍ的窗户。\
 
 在电视台开始播放无聊的新春节目的时候，
 我来到了７楼。\
 
 也正是在这新年伊始的时候，
 我结识了那位女孩…\
-
-;bg "e\w.jpg",3
-
-mp3fadeout 2500
-stop
-
-bg "e\w.jpg",3
-
-bg "e\nar01.jpg",5
-
-dwave 0,"w\n009.ogg"
-
-bg "e\nar01.jpg",5
-
-bg "e\nar01c.jpg",1
-
-bg "e\nar01d.jpg",3
-
-bg "e\w.jpg",3
-
-
-mov %flg_pro,1
-mov %flg_bplay,1
-goto *haeleth_honpen2

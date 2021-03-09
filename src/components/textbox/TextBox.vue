@@ -1,7 +1,7 @@
 <template>
   <div class="text-box w-screen h-64 fixed bottom-0 grid grid-cols-12 gap-16">
     <div class="text-content col-span-9 text-left pr-24">
-      <typed-words :words="text" :keep="keep" />
+      <typed-words :words="text"/>
     </div>
   </div>
 </template>
@@ -16,10 +16,9 @@ export default {
     TypedWords,
   },
   props: {
-    text: String,
-    keep:{
-      type: Boolean,
-      default: false,
+    text: {
+      type: String,
+      default: ""
     }
   },
   data() {
