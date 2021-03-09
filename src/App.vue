@@ -1,7 +1,7 @@
 <template>
   <div
     class="main-div"
-    :style="{ backgroundImage: 'url(\'' + encodeURI(bg) + '.webp\')' }"
+    :style="{ backgroundImage: 'url(' + bg + ')' }"
     @click="cal()"
   >
     <!-- <div > -->
@@ -87,7 +87,8 @@ export default {
         else if (now.startsWith(";")) continue;
         else if (now.startsWith("mov")) continue;
         else if (now.startsWith("bg")) {
-          this.bg = "\\" + /[0-9a-z_\\]+\.[a-z]+/.exec(now);
+          this.bg = "\\\\" + /[0-9a-z_\\]+\.[a-z]+/.exec(now).toString().replace('\\','\\\\')+'.webp';
+          console.log(this.bg)
           setTimeout(() => this.cal(), 1100);
           return;
         } else if (now.startsWith("wait") || now.startsWith("!w")) {
