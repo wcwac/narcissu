@@ -1,19 +1,24 @@
 {
-  "name": "narcissu",
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
-  },
-  "dependencies": {
-    "howler": "^2.2.1",
-    "typed.js": "^2.0.11",
-    "vue": "^3.0.5"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^1.1.5",
-    "@vue/compiler-sfc": "^3.0.5",
-    "vite": "^2.0.5"
-  }
+    "name": "narcissu",
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite --open",
+        "build": "vite build",
+        "serve": "vite preview"
+    },
+    "dependencies": {
+        "howler": "^2.2.1",
+        "typed.js": "^2.0.11",
+        "vue": "^3.0.5",
+        "vue-router": "^4.0.10",
+        "vuex": "^4.0.2",
+        "vuex-persistedstate": "*"
+    },
+    "devDependencies": {
+        "@types/howler": "^2.2.2",
+        "@vitejs/plugin-vue": "^1.1.5",
+        "@vue/compiler-sfc": "^3.0.5",
+        "prettier": "^2.3.2",
+        "vite": "^2.0.5"
+    }
 }
